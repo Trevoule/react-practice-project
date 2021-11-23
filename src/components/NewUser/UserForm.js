@@ -1,21 +1,39 @@
 import { useState } from "react/cjs/react.development";
-import "./UserForm.css"
+import styles from "./UserForm.module.css";
+import Button from "../../UI/Button";
 
 const UserForm = ({ onAddItem }) => {
   const [inputtedUsername, setInputtedUsername] = useState("");
   const [inputtedAge, setInputtedAge] = useState("");
+  const [isValid, setIsValid] = useState(true);
 
   const usernameChangeHandler = (e) => {
+    const input = e.target.value;
+    if (input.trim().length > 0) {
+      setIsValid(true);
+    }
     setInputtedUsername(e.target.value);
   };
 
   const ageChangeHandler = (e) => {
+    const input = e.target.value;
+    if (input.trim().length > 0) {
+      setIsValid(true);
+    }
     setInputtedAge(e.target.value);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
 
+    if (
+      inputtedUsername.trim().length === 0 &&
+      inputtedAge.trim().length === 0
+    ) {
+      setIsValid(false);
+      return;
+    }
+    
     const userData = {
       username: inputtedUsername,
       age: inputtedAge,
@@ -29,8 +47,12 @@ const UserForm = ({ onAddItem }) => {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="new-user__controls">
-        <div className="new-user__control">
+      <div className={styles["new-user__controls"]}>
+        <div
+          className={`${styles["new-user__control"]} ${
+            !isValid && styles.invalid
+          }`}
+        >
           <label>Username</label>
           <input
             type="text"
@@ -38,7 +60,11 @@ const UserForm = ({ onAddItem }) => {
             value={inputtedUsername}
           />
         </div>
-        <div className="new-user__control">
+        <div
+          className={`${styles["new-user__control"]} ${
+            !isValid && styles.invalid
+          }`}
+        >
           <label>Age(Years)</label>
           <input
             type="number"
@@ -46,7 +72,7 @@ const UserForm = ({ onAddItem }) => {
             value={inputtedAge}
           />
         </div>
-        <button type="submit">Add User</button>
+        <Button type="submit">Add User</Button>
       </div>
     </form>
   );

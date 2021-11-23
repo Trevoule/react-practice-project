@@ -13,7 +13,6 @@ const NewUser = ({ onAddUser }) => {
     };
 
     onAddUser(userData);
-    console.log(userData);
   };
 
   return (
