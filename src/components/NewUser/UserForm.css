@@ -1,0 +1,35 @@
+.new-user__control{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    width: 95%;
+}
+
+.new-user__controls label {
+    font-family: inherit;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.new-user__controls input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.new-user__controls button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 1px solid #40005d;
+  background-color: #40005d;
+  color: white;
+  width: 20%;
+}
+
+.new-user__controls button:hover {
+  background-color: #510674;
+  border-color: #510674;
+}
+

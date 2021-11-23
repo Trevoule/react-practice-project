@@ -1,0 +1,11 @@
+.new-user{
+    padding: 2rem;
+    background-color: #fff;
+    margin: 2rem auto;
+    width: 50rem;
+    max-width: 95%;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+}
