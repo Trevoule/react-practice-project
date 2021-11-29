@@ -2,7 +2,7 @@ import { useState } from "react/cjs/react.development";
 import styles from "./UserForm.module.css";
 import Button from "../../UI/Button";
 
-const UserForm = ({ onAddItem }) => {
+const UserForm = ({ onAddItem, onValidForm }) => {
   const [inputtedUsername, setInputtedUsername] = useState("");
   const [inputtedAge, setInputtedAge] = useState("");
   const [isValid, setIsValid] = useState(true);
@@ -13,6 +13,7 @@ const UserForm = ({ onAddItem }) => {
       setIsValid(true);
     }
     setInputtedUsername(e.target.value);
+    console.log(null === undefined);
   };
 
   const ageChangeHandler = (e) => {
@@ -27,13 +28,20 @@ const UserForm = ({ onAddItem }) => {
     e.preventDefault();
 
     if (
-      inputtedUsername.trim().length === 0 &&
+      inputtedUsername.trim().length === 0 ||
       inputtedAge.trim().length === 0
     ) {
       setIsValid(false);
+      onValidForm("Please enter a valid name and age (non-empty values).");
+
       return;
     }
-    
+
+    if (inputtedAge.trim().length === 0) {
+      onValidForm("Please enter a valid age (>0)");
+      return;
+    }
+
     const userData = {
       username: inputtedUsername,
       age: inputtedAge,
